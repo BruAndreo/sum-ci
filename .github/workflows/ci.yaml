@@ -2,7 +2,7 @@ name: sum-ci-workflow
 on: 
   pull_request:
     branches:
-      - develop
+      - main
 jobs:
   check-application:
     runs-on: ubuntu-latest
