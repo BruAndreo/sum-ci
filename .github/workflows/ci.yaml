@@ -11,8 +11,7 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: '>=1.20.0'
-      - run: go test
-      - run: go run math.go
+      - run: go test -coverprofile=coverage.out
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -32,3 +31,9 @@ jobs:
         with:
           push: true
           tags: bruandreo/sum-ci:latest
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
